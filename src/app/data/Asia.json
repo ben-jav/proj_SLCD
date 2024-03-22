@@ -1,0 +1,26 @@
+{
+  "continent": "Asia",
+  "tiere": [
+    {
+      "name": "Tier1"
+    },
+    {
+      "name": "Tier2"
+    },
+    {
+      "name": "Tier3"
+    },
+    {
+      "name": "Tier4"
+    },
+    {
+      "name": "Tier5"
+    },
+    {
+      "name": "Tier6"
+    },
+    {
+      "name": "Tier7"
+    }
+  ]
+}

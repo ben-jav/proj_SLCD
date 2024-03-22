@@ -1,0 +1,17 @@
+{
+  "continent": "Suedamerika",
+  "tiere": [
+    {
+      "name": "sud-Elephant"
+    },
+    {
+      "name": "sud-Gnu"
+    },
+    {
+      "name": "sud-Nilpferd"
+    },
+    {
+      "name": "sud-Elephant"
+    }
+  ]
+}

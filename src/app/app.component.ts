@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import AFRIKA from '../app/data/Afrika.json';
+import ASIA from '../app/data/Asia.json';
+import EUROPA from '../app/data/Europa.json';
+import SUDAMERIKA from '../app/data/Suedamerika.json';
+import { Tier } from './tierInterface';
+import { TiereContinent } from './tierInterface';
 
 @Component({
   selector: 'ne4-root',
@@ -6,5 +12,104 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'proj_SLCD';
+  afrikaData: TiereContinent = AFRIKA;
+  asiaData: TiereContinent = ASIA;
+  europaData: TiereContinent = EUROPA;
+  sudamerikaData: TiereContinent = SUDAMERIKA;
+
+  newTierName: string = '';
+
+  // constructor() {
+  //   this.loadData();
+  // }
+
+  // loadData() {
+  //   this.afrikaData = AFRIKA;
+  //   this.asiaData = ASIA;
+  //   this.europaData = EUROPA;
+  //   this.sudamerikaData = SUDAMERIKA;
+  // }
+
+  addNewTier(continent: string) {
+    let data: TiereContinent;
+
+    switch(continent) {
+      case 'Afrika':
+        data = this.afrikaData;
+        break;
+      case 'Asia':
+        data = this.asiaData;
+        break;
+      case 'Europa':
+        data = this.europaData;
+        break;
+      case 'Sudamerika':
+        data = this.sudamerikaData;
+        break;
+      default:
+        console.log('Falsche Eingabe!');
+        return;
+    }
+    if (this.newTierName) {
+      const newTier: Tier = { name: this.newTierName };
+      data.tiere.push(newTier);
+      this.newTierName = '';
+    }
+  }
+
+  downloadData(continent: string) {
+    let data: TiereContinent;
+
+    switch(continent) {
+      case 'Afrika':
+        data = this.afrikaData;
+        break;
+      case 'Asia':
+        data = this.asiaData;
+        break;
+      case 'Europa':
+        data = this.europaData;
+        break;
+      case 'Sudamerika':
+        data = this.sudamerikaData;
+        break;
+      default:
+        console.log('Falsche Eingabe!');
+        return;
+    }
+    const fileName = `${continent}_data.json`
+    const fileContent = JSON.stringify(data, null, 2);
+    const blob = new Blob([fileContent], {type: 'application/json'});
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    link.click();
+
+    window.URL.revokeObjectURL(url);
+  }
+
+
+  generateContinentSection(continentData: TiereContinent, continentName: string): string {
+    if (!continentData) {
+      return '';
+    }
+    return `
+      <div>
+        <h2>${continentName} Daten</h2>
+        <ul>
+          <li *ngFor="let tier of ${continentName.toLowerCase()}Data.tiere">{{tier.name}}</li>
+        </ul>
+        <form (submit)="addNewTier('${continentName}')">
+          Neues Tier: <input [(ngModel)]="newTierName" name="newTierName">
+          <button type="submit">Hinzufügen</button>
+          <button (click)="downloadData('${continentName}')">Daten herunterladen</button>
+        </form>
+      </div>
+      <hr>
+    `;
+  }
+  
+
 }

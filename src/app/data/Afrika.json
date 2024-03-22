@@ -1,0 +1,17 @@
+{
+  "continent": "Afrika",
+  "tiere": [
+    {
+      "name": "Elephant"
+    },
+    {
+      "name": "Gnu"
+    },
+    {
+      "name": "Nilpferd"
+    },
+    {
+      "name": "Elephant"
+    }
+  ]
+}

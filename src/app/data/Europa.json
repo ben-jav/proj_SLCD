@@ -1,0 +1,17 @@
+{
+  "continent": "Europa",
+  "tiere": [
+    {
+      "name": "Katze"
+    },
+    {
+      "name": "Schlang"
+    },
+    {
+      "name": "Lamm"
+    },
+    {
+      "name": "Kuh"
+    }
+  ]
+}
