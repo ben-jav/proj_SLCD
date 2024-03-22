@@ -1,3 +1,37 @@
+eine Datei zum Einlesen von der Liste auswählen:
+<select [(ngModel)]="continentName" continentName="alf" (change)="selectContinent()">
+  <option value="">---select continent---</option>
+  <option value="Afrika">Afrika</option>
+  <option value="Asia">Asia</option>
+  <option value="Europa">Europa</option>
+  <option value="Sudamerika">Sudamerika</option>
+</select>
+
+
+<div *ngIf="selectedContinentData">
+  <h2>{{selectedContinentData.continent}}</h2>
+  <ul>
+    <li *ngFor="let tier of selectedContinentData.tiere">{{tier.name}}</li>
+  </ul>
+  <form (submit)="addNewTier(selectedContinentData.continent)">
+    Neues Tier: <input [(ngModel)]="newTierName" name="newTierName">
+    <button type="submit">Hinzufügen</button>
+    
+    <button (click)="downloadData(selectedContinentData.continent)">Daten herunterladen</button>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+<!-- <hr>
+<hr>
+<hr>
+
 <div *ngIf="afrikaData">
   <h2>Afrika Daten</h2>
   <ul>
@@ -51,4 +85,4 @@
     <button (click)="downloadData('Sudamerika')">Daten herunterladen</button>
   </form>
 </div>
-
+ -->
